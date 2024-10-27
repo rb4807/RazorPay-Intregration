@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Razorpay Dummy Payment</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <h1>Dummy Razorpay Payment Button</h1>
+    <button id="payButton">Pay with Razorpay</button>
+
+    <script>
+        document.getElementById('payButton').onclick = function(e) {
+            var options = {
+                "key": "rzp_test_mbbvYgmfaDYIpX", // Replace with your Razorpay key ID
+                "amount": "1000", // Amount in the smallest currency unit (e.g., 1000 paise = 10 INR)
+                "currency": "INR",
+                "name": "Dummy Merchant",
+                "description": "Dummy Transaction",
+                "image": "https://yourdomain.com/your_logo.png", // Replace with your logo URL
+                "handler": function (response){
+                    alert('Payment successful! Payment ID: ' + response.razorpay_payment_id);
+                },
+                "prefill": {
+                    "name": "John Doe",
+                    "email": "john.doe@example.com",
+                    "contact": "9999999999"
+                },
+                "theme": {
+                    "color": "#3399cc"
+                }
+            };
+            var paymentObject = new Razorpay(options);
+            paymentObject.open();
+        };
+    </script>
+</body>
+</html>
